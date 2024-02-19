@@ -3,6 +3,7 @@ package NewGame;
 import javax.swing.JPanel;
 
 import Controller.KeyController;
+import Controller.MouseController;
 
 import java.awt.Graphics;
 
@@ -12,6 +13,14 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         addKeyListener(new KeyController(this));
+        addMouseListener(new MouseController(this));
+        addMouseMotionListener(new MouseController(this));
+    }
+
+    //for mouse Listeners
+    public void setPos(int posX, int posY){
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public void setPosX(int value){
