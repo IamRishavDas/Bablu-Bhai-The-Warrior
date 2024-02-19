@@ -15,12 +15,8 @@ public class GamePanel extends JPanel {
 
     // controlling speed
     private float dirX = 3f;
-    private float dirY = 3f;;
-
-    // fps counter
-    private int frames = 0;
-    private long lastCheck = 0;
-
+    private float dirY = 3f;
+    
     //ball color
     private Color color = new Color(24,255,254);
 
@@ -50,14 +46,7 @@ public class GamePanel extends JPanel {
 
         g.setColor(color);
         g.fillOval((int)posX, (int)posY, 100, 100);
-        updateOval();
-
-        frames++;
-        if ((System.currentTimeMillis() - lastCheck) >= 1000) {
-            lastCheck = System.currentTimeMillis();
-            System.out.println("FPS: " + frames);
-            frames = 0;
-        }
+        updateOval();      
     }
 
     private void updateOval() {
