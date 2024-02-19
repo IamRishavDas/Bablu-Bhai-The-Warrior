@@ -13,3 +13,4 @@ Also, update the paintComponet() using the repaint() method.
     1. repaint() game loop
     2. make a fps counter
     3. visuals
+Now the sepearte game loop with different thread.
