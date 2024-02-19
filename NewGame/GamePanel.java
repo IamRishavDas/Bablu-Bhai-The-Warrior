@@ -58,8 +58,6 @@ public class GamePanel extends JPanel {
             System.out.println("FPS: " + frames);
             frames = 0;
         }
-
-        repaint();
     }
 
     private void updateOval() {
