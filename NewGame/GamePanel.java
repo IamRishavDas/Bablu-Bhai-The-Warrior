@@ -14,8 +14,8 @@ public class GamePanel extends JPanel {
     private float posY = 50f;
 
     // controlling speed
-    private float dirX = 0.5f;
-    private float dirY = 0.5f;;
+    private float dirX = 3f;
+    private float dirY = 3f;;
 
     // fps counter
     private int frames = 0;
