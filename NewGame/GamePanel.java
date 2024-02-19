@@ -8,10 +8,14 @@ import Controller.MouseController;
 import java.awt.Graphics;
 
 public class GamePanel extends JPanel {
-    private int posX = 100;
-    private int posY = 100;
+    private float posX = 50f;
+    private float posY = 50f;
 
-    //fps counter
+    // controlling speed
+    private float dirX = 0.5f;
+    private float dirY = 0.5f;;
+
+    // fps counter
     private int frames = 0;
     private long lastCheck = 0;
 
@@ -21,17 +25,17 @@ public class GamePanel extends JPanel {
         addMouseMotionListener(new MouseController(this));
     }
 
-    //for mouse Listeners
-    public void setPos(int posX, int posY){
+    // for mouse Listeners
+    public void setPos(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }
 
-    public void setPosX(int value){
+    public void setPosX(int value) {
         posX += value;
     }
 
-    public void setPosY(int value){
+    public void setPosY(int value) {
         posY += value;
     }
 
@@ -39,10 +43,11 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.fillOval(posX, posY, 100, 100);
+        g.fillOval((int)posX, (int)posY, 100, 100);
+        updateOval();
 
         frames++;
-        if((System.currentTimeMillis() - lastCheck) >= 1000){
+        if ((System.currentTimeMillis() - lastCheck) >= 1000) {
             lastCheck = System.currentTimeMillis();
             System.out.println("FPS: " + frames);
             frames = 0;
@@ -50,4 +55,17 @@ public class GamePanel extends JPanel {
 
         repaint();
     }
+
+    private void updateOval() {
+        
+        posX += dirX;
+        if (posX > 900 || posX < 0)
+            dirX *= -1;
+
+        posY += dirY;
+
+        if (posY > 500 || posY < 0)
+            dirY *= -1;
+    }
+
 }
