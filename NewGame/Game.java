@@ -3,6 +3,7 @@ package NewGame;
 import java.awt.Graphics;
 
 import Entities.Player;
+import Levels.LevelManager;
 
 @SuppressWarnings("unused")
 public class Game implements Runnable {
@@ -17,6 +18,8 @@ public class Game implements Runnable {
 
     public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+
+    private LevelManager levelManager;
 
 
     // FPS settter
@@ -39,6 +42,7 @@ public class Game implements Runnable {
 
     public void initClasses(){
         player = new Player(200, 200);
+        levelManager = new LevelManager(this);
     }
 
     private void startGameLoop() {
@@ -48,9 +52,11 @@ public class Game implements Runnable {
 
     public void update(){
         player.update();
+        levelManager.update();
     }
 
     public void render(Graphics g){
+        levelManager.render(g);
         player.render(g);
     }
 

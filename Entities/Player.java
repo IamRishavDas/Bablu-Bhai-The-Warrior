@@ -2,9 +2,6 @@ package Entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 
 import Utils.Constants;
 import Utils.LoadSave;
@@ -35,12 +32,12 @@ public class Player extends Entity {
 
     // render the player
     public void render(Graphics g) {
-        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 64 * 3, 40 * 3, null);
+        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 64 * 2, 40 * 2, null);
     }
 
     private void loadAnimations() {
 
-        BufferedImage image = LoadSave.getPlayerImage(LoadSave.PLAYER);
+        BufferedImage image = LoadSave.getImage(LoadSave.PLAYER);
 
         animations = new BufferedImage[9][6];
         for (int i = 0; i < animations.length; i++) {
