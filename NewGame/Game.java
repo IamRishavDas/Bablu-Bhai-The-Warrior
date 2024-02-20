@@ -1,5 +1,6 @@
 package NewGame;
 
+@SuppressWarnings("unused")
 public class Game implements Runnable {
     private GameFrame gameFrame;
     private GamePanel gamePanel;

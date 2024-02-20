@@ -24,9 +24,9 @@ public class GamePanel extends JPanel {
     private float posX = 50f;
     private float posY = 50f;
 
-    // controlling speed
-    private float dirX = 3f;
-    private float dirY = 3f;
+    // // controlling speed
+    // private float dirX = 3f;
+    // private float dirY = 3f;
 
     // adding panel attributes and listeners
     public GamePanel() {
