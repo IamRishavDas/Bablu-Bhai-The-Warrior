@@ -7,18 +7,19 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 import Utils.Constants;
+import Utils.LoadSave;
 
 public class Player extends Entity {
 
     private BufferedImage[][] animations;
     private int aniTick, aniSpeed = 15, aniIndex; // the lower aniSpeed leads to increase the animation speed
     private int playerAction = Constants.PlayerConstants.IDLE;
-    
+
     private boolean left, right, up, down;
 
     private boolean moving = false;
     private boolean attacking = false;
-    
+
     private final int playerSpeed = 1;
 
     public Player(float x, float y) {
@@ -34,91 +35,79 @@ public class Player extends Entity {
 
     // render the player
     public void render(Graphics g) {
-        g.drawImage(animations[playerAction][aniIndex], (int)x, (int)y, 64*3, 40*3, null);
+        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 64 * 3, 40 * 3, null);
     }
 
     private void loadAnimations() {
 
-        String filePath = "/Resources/player_sprites.png";
-        InputStream is = getClass().getResourceAsStream(filePath);
-        try {
-            BufferedImage image = ImageIO.read(is);
+        BufferedImage image = LoadSave.getPlayerImage(LoadSave.PLAYER);
 
-            animations = new BufferedImage[9][6];
-
-            for (int i = 0; i < animations.length; i++) {
-                for (int j = 0; j < animations[i].length; j++) {
-                    animations[i][j] = image.getSubimage(j * 64, i * 40, 64, 40);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+        animations = new BufferedImage[9][6];
+        for (int i = 0; i < animations.length; i++) {
+            for (int j = 0; j < animations[i].length; j++) {
+                animations[i][j] = image.getSubimage(j * 64, i * 40, 64, 40);
             }
         }
+
     }
 
-    public void setAnimation(){
+    public void setAnimation() {
 
         int startAni = playerAction;
 
-        if(moving){
+        if (moving) {
             playerAction = Constants.PlayerConstants.RUNNING;
-        }else{
+        } else {
             playerAction = Constants.PlayerConstants.IDLE;
         }
 
-        if(attacking){
+        if (attacking) {
             playerAction = Constants.PlayerConstants.ATTACK_1;
         }
 
-        if(startAni != playerAction){
+        if (startAni != playerAction) {
             resetAnimation();
         }
     }
 
-    private void resetAnimation(){
+    private void resetAnimation() {
         aniTick = aniIndex = 0;
     }
 
-    public void updatePos(){
+    public void updatePos() {
 
-        moving = false; //default
+        moving = false; // default
 
-        if(left && !right){ // left
+        if (left && !right) { // left
             x -= playerSpeed;
             moving = true;
-        }else if(!left && right){ //right
+        } else if (!left && right) { // right
             x += playerSpeed;
             moving = true;
         }
 
-        if(up && !down){ //up
+        if (up && !down) { // up
             y -= playerSpeed;
             moving = true;
-        }else if(!up && down){ //down
+        } else if (!up && down) { // down
             y += playerSpeed;
             moving = true;
         }
     }
 
-    private void updateAnimation(){
+    private void updateAnimation() {
         aniTick++;
-        if(aniTick >= aniSpeed){
+        if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if(aniIndex >= Constants.PlayerConstants.GetSpriteAmount(playerAction)){
+            if (aniIndex >= Constants.PlayerConstants.GetSpriteAmount(playerAction)) {
                 aniIndex = 0;
                 attacking = false;
             }
         }
     }
 
-    public void setAttacking(boolean attacking){
+    public void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }
 
@@ -154,11 +143,8 @@ public class Player extends Entity {
         this.down = down;
     }
 
-
-    public void resetDirections(){
+    public void resetDirections() {
         left = right = up = down = false;
     }
 
-    
-    
 }

@@ -11,10 +11,6 @@ import java.awt.Graphics;
 
 public class GamePanel extends JPanel {
 
-    // panel dim
-    private final int panelWidth  = 1280;
-    private final int panelHeight = 800;
-
     // using constructor initialize the game Component
     private Game game;
 
@@ -29,10 +25,11 @@ public class GamePanel extends JPanel {
 
     // setting panel dimension
     private void setPanelSize(){
-        Dimension size = new Dimension(panelWidth,panelHeight);
+        Dimension size = new Dimension(Game.GAME_WIDTH,Game.GAME_HEIGHT); // 1248 x 672
         this.setMinimumSize(size);
         this.setPreferredSize(size);
         this.setMaximumSize(size);
+        // System.out.println("Game Width: " + Game.GAME_WIDTH + "Game Height: " + Game.GAME_HEIGHT);
     }
 
     @Override
