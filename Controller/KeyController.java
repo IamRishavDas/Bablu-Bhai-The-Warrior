@@ -21,10 +21,10 @@ public class KeyController implements KeyListener{
     public void keyPressed(KeyEvent e) {
         int keyEvent = e.getKeyCode();
         switch(keyEvent){
-            case KeyEvent.VK_RIGHT -> gamePanel.setDirection(Constants.Directions.RIGHT);
-            case KeyEvent.VK_LEFT  -> gamePanel.setDirection(Constants.Directions.LEFT);
-            case KeyEvent.VK_UP    -> gamePanel.setDirection(Constants.Directions.UP);
-            case KeyEvent.VK_DOWN  -> gamePanel.setDirection(Constants.Directions.DOWN);
+            case KeyEvent.VK_RIGHT -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.RIGHT);
+            case KeyEvent.VK_LEFT  -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.LEFT);
+            case KeyEvent.VK_UP    -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.UP);
+            case KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.DOWN);
         }
     }
 
@@ -32,7 +32,7 @@ public class KeyController implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int keyEvent = e.getKeyCode();
         switch(keyEvent){
-            case KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN  -> gamePanel.setMoving(false);
+            case KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setMoving(false);
         }
     }
 }

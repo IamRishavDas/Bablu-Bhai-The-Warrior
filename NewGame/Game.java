@@ -1,5 +1,9 @@
 package NewGame;
 
+import java.awt.Graphics;
+
+import Entities.Player;
+
 @SuppressWarnings("unused")
 public class Game implements Runnable {
     private GameFrame gameFrame;
@@ -12,11 +16,18 @@ public class Game implements Runnable {
     // UPS setter (Update per Sec)
     private final int UPS = 200;
 
+    Player player;
+
     public Game() {
-        gamePanel = new GamePanel();
+        initClasses();
+        gamePanel = new GamePanel(this);
         gameFrame = new GameFrame(gamePanel);
         gamePanel.requestFocus();
         startGameLoop();
+    }
+
+    public void initClasses(){
+        player = new Player(200, 200);
     }
 
     private void startGameLoop() {
@@ -25,7 +36,11 @@ public class Game implements Runnable {
     }
 
     public void update(){
-        gamePanel.updateGame();
+        player.update();
+    }
+
+    public void render(Graphics g){
+        player.render(g);
     }
 
     // game loop (fps counter)
@@ -71,5 +86,9 @@ public class Game implements Runnable {
                 updates = 0;
             }
         }
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 }
