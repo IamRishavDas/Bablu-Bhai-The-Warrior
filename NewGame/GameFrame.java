@@ -4,12 +4,13 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
 
-    public GameFrame() {
+    public GameFrame(GamePanel gamePanel) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000, 600);
         setResizable(false);
-        setLocationRelativeTo(null);
         setTitle("GameFrame");
+        add(gamePanel);
+        pack(); // adjust the frame size according to the panel dim
+        setLocationRelativeTo(null);
         setVisible(true);
     }
     
