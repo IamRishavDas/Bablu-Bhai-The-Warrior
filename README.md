@@ -1,4 +1,4 @@
-# PinBall
+# ActionGame
 A simple Pin Ball game using java
 
 1. First Simple JFrame And JPanel for the game
