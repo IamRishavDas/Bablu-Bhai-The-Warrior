@@ -24,6 +24,7 @@ public class KeyController implements KeyListener{
             case KeyEvent.VK_LEFT  -> gamePanel.getGame().getPlayer().setLeft(true);
             case KeyEvent.VK_UP    -> gamePanel.getGame().getPlayer().setUp(true);
             case KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setDown(true);
+            case KeyEvent.VK_A     -> gamePanel.getGame().getPlayer().setAttacking(true);
         }
     }
 
