@@ -26,6 +26,9 @@ public class GamePanel extends JPanel {
 
     // current state of the player
     private int playerAction = Constants.PlayerConstants.IDLE;
+    private int playerDir = -1;
+    private boolean moving = false;
+    private final int move = 5;
 
     // panel dim
     private final int panelWidth  = 1280;
@@ -83,18 +86,32 @@ public class GamePanel extends JPanel {
         this.setMaximumSize(size);
     }
 
-    // for mouse Listeners
-    public void setPos(int posX, int posY) {
-        this.posX = posX;
-        this.posY = posY;
+    public void setDirection(int direction){
+        this.playerDir = direction;
+        moving = true;
     }
 
-    public void setPosX(int value) {
-        posX += value;
+    public void setMoving(boolean moving){
+        this.moving = moving;
     }
 
-    public void setPosY(int value) {
-        posY += value;
+    public void setAnimation(){
+        if(moving){
+            playerAction = Constants.PlayerConstants.RUNNING;
+        }else{
+            playerAction = Constants.PlayerConstants.IDLE;
+        }
+    }
+
+    public void updatePos(){
+        if(moving){
+            switch (playerDir) {
+                case Constants.Directions.LEFT -> posX -= move;
+                case Constants.Directions.RIGHT -> posX += move;
+                case Constants.Directions.UP -> posY -= move;
+                case Constants.Directions.DOWN -> posY += move;
+            }
+        }
     }
 
     @Override
@@ -102,6 +119,8 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
 
         updateAnimation();
+        setAnimation();
+        updatePos();
         g.drawImage(animations[playerAction][aniIndex], (int)posX, (int)posY, 64*3, 40*3, null);
     }
 
