@@ -16,7 +16,8 @@ public class Game implements Runnable {
     // UPS setter (Update per Sec)
     private final int UPS = 200;
 
-    Player player;
+    // creating a player in Game
+    private Player player;
 
     public Game() {
         initClasses();
@@ -43,7 +44,7 @@ public class Game implements Runnable {
         player.render(g);
     }
 
-    // game loop (fps counter)
+    // game loop (fps counter) && UPS counter
     @Override
     public void run() {
         double timePerFrame = 1e9 / FPS;
@@ -89,6 +90,6 @@ public class Game implements Runnable {
     }
 
     public Player getPlayer(){
-        return player;
+        return this.player;
     }
 }

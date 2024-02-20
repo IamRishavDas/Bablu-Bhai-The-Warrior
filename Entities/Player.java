@@ -13,9 +13,11 @@ public class Player extends Entity {
     private BufferedImage[][] animations;
     private int aniTick, aniSpeed = 15, aniIndex; // the lower aniSpeed leads to increase the animation speed
     private int playerAction = Constants.PlayerConstants.IDLE;
-    private int playerDir = -1;
+    
+    private boolean left, right, up, down;
+
     private boolean moving = false;
-    private final int move = 1;
+    private final int playerSpeed = 1;
 
     public Player(float x, float y) {
         super(x, y);
@@ -23,9 +25,9 @@ public class Player extends Entity {
     }
 
     public void update() {
-        updateAnimation();
-        setAnimation();
         updatePos();
+        setAnimation();
+        updateAnimation();
     }
 
     // render the player
@@ -58,15 +60,6 @@ public class Player extends Entity {
         }
     }
 
-        public void setDirection(int direction){
-        this.playerDir = direction;
-        moving = true;
-    }
-
-    public void setMoving(boolean moving){
-        this.moving = moving;
-    }
-
     public void setAnimation(){
         if(moving){
             playerAction = Constants.PlayerConstants.RUNNING;
@@ -76,13 +69,23 @@ public class Player extends Entity {
     }
 
     public void updatePos(){
-        if(moving){
-            switch (playerDir) {
-                case Constants.Directions.LEFT -> x -= move;
-                case Constants.Directions.RIGHT -> x += move;
-                case Constants.Directions.UP -> y -= move;
-                case Constants.Directions.DOWN -> y += move;
-            }
+
+        moving = false; //default
+
+        if(left && !right){ // left
+            x -= playerSpeed;
+            moving = true;
+        }else if(!left && right){ //right
+            x += playerSpeed;
+            moving = true;
+        }
+
+        if(up && !down){ //up
+            y -= playerSpeed;
+            moving = true;
+        }else if(!up && down){ //down
+            y += playerSpeed;
+            moving = true;
         }
     }
 
@@ -96,4 +99,39 @@ public class Player extends Entity {
             }
         }
     }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    
+    
 }

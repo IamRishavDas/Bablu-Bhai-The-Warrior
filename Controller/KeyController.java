@@ -4,10 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import NewGame.GamePanel;
-import Utils.Constants;
 
 public class KeyController implements KeyListener{
-    GamePanel gamePanel;
+    private GamePanel gamePanel;
     public KeyController(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
@@ -21,10 +20,10 @@ public class KeyController implements KeyListener{
     public void keyPressed(KeyEvent e) {
         int keyEvent = e.getKeyCode();
         switch(keyEvent){
-            case KeyEvent.VK_RIGHT -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.RIGHT);
-            case KeyEvent.VK_LEFT  -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.LEFT);
-            case KeyEvent.VK_UP    -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.UP);
-            case KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setDirection(Constants.Directions.DOWN);
+            case KeyEvent.VK_RIGHT -> gamePanel.getGame().getPlayer().setRight(true); 
+            case KeyEvent.VK_LEFT  -> gamePanel.getGame().getPlayer().setLeft(true);
+            case KeyEvent.VK_UP    -> gamePanel.getGame().getPlayer().setUp(true);
+            case KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setDown(true);
         }
     }
 
@@ -32,7 +31,10 @@ public class KeyController implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int keyEvent = e.getKeyCode();
         switch(keyEvent){
-            case KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setMoving(false);
+            case KeyEvent.VK_RIGHT -> gamePanel.getGame().getPlayer().setRight(false); 
+            case KeyEvent.VK_LEFT  -> gamePanel.getGame().getPlayer().setLeft(false);
+            case KeyEvent.VK_UP    -> gamePanel.getGame().getPlayer().setUp(false);
+            case KeyEvent.VK_DOWN  -> gamePanel.getGame().getPlayer().setDown(false);
         }
     }
 }
