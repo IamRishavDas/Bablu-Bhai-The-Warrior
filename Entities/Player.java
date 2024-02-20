@@ -132,6 +132,11 @@ public class Player extends Entity {
         this.down = down;
     }
 
+
+    public void resetDirections(){
+        left = right = up = down = false;
+    }
+
     
     
 }
