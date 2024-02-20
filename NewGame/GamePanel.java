@@ -52,6 +52,12 @@ public class GamePanel extends JPanel {
         setPanelSize();
     }
 
+    public void updateGame(){
+        updateAnimation();
+        setAnimation();
+        updatePos();
+    }
+
     private void loadAnimations(){
         animations = new BufferedImage[9][6];
 
@@ -117,10 +123,6 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        updateAnimation();
-        setAnimation();
-        updatePos();
         g.drawImage(animations[playerAction][aniIndex], (int)posX, (int)posY, 64*3, 40*3, null);
     }
 
