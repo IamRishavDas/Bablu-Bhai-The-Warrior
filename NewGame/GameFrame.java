@@ -22,6 +22,7 @@ public class GameFrame extends JFrame {
                 
             }
 
+            // if the game window loose the focous anytime then the player direction booleans will again set as false
             @Override
             public void windowLostFocus(WindowEvent e) {
                 gamePanel.getGame().windowFocousLost();
