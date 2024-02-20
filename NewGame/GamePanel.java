@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import Controller.KeyController;
 import Controller.MouseController;
+import Utils.Constants;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -14,7 +15,17 @@ import java.io.InputStream;
 public class GamePanel extends JPanel {
 
     // load image
-    private BufferedImage image, subImage;
+    private BufferedImage image;
+
+    // animations
+
+    private int aniTick, aniSpeed = 15, aniIndex; // the lower aniSpeed leads to increase the animation speed
+
+    // idle animations
+    private BufferedImage[][] animations;
+
+    // current state of the player
+    private int playerAction = Constants.PlayerConstants.IDLE;
 
     // panel dim
     private final int panelWidth  = 1280;
@@ -31,10 +42,21 @@ public class GamePanel extends JPanel {
     // adding panel attributes and listeners
     public GamePanel() {
         importImage();
+        loadAnimations();
         addKeyListener(new KeyController(this));
         addMouseListener(new MouseController(this));
         addMouseMotionListener(new MouseController(this));
         setPanelSize();
+    }
+
+    private void loadAnimations(){
+        animations = new BufferedImage[9][6];
+
+        for(int i = 0; i < animations.length; i++) {
+            for(int j = 0; j < animations[i].length; j++) {
+                animations[i][j] = image.getSubimage(j*64, i*40, 64, 40);
+            }
+        }
     }
 
     private void importImage(){
@@ -44,6 +66,12 @@ public class GamePanel extends JPanel {
             image = ImageIO.read(is);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally{
+            try {
+                is.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -72,8 +100,20 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        subImage = image.getSubimage(1*64, 8*40, 64, 40);
-        g.drawImage(subImage, (int)posX, (int)posY, 64*2, 40*2, null);
+
+        updateAnimation();
+        g.drawImage(animations[playerAction][aniIndex], (int)posX, (int)posY, 64*3, 40*3, null);
+    }
+
+    private void updateAnimation(){
+        aniTick++;
+        if(aniTick >= aniSpeed){
+            aniTick = 0;
+            aniIndex++;
+            if(aniIndex >= Constants.PlayerConstants.GetSpriteAmount(playerAction)){
+                aniIndex = 0;
+            }
+        }
     }
 
     //chagning oval direction for bounce effect

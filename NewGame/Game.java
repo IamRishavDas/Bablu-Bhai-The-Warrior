@@ -24,7 +24,7 @@ public class Game implements Runnable {
     // game loop (fps counter)
     @Override
     public void run() {
-        double timePerFrame = 1000000000.0 / FPS;
+        double timePerFrame = 1e9 / FPS;
         long lastFrame = System.nanoTime();
         long now = System.nanoTime();
 
