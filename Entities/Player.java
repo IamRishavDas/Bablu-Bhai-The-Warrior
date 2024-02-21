@@ -46,7 +46,7 @@ public class Player extends Entity {
     // render the player
     public void render(Graphics g) {
         g.drawImage(animations[playerAction][aniIndex], (int)(hitBox.x - xDrawOffset), (int)(hitBox.y - yDrawOffset), width, height, null);
-        drawHitBox(g);
+        // drawHitBox(g);
     }
 
     private void loadAnimations() {
