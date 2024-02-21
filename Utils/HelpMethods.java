@@ -3,7 +3,7 @@ package Utils;
 import NewGame.Game;
 
 public class HelpMethods {
-    public static boolean canMove(float x, float y, int width, int height, int[][] levelData) {
+    public static boolean canMove(float x, float y, float width, float height, int[][] levelData) {
         if (!isSollid(x, y, levelData)) {
             if (!isSollid(x + width, y + height, levelData)) {
                 if (!isSollid(x + width, y, levelData)) {

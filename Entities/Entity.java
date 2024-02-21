@@ -2,7 +2,8 @@ package Entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;;
 
 public abstract class Entity {
     // only extending class can use it
@@ -10,32 +11,31 @@ public abstract class Entity {
     protected int width, height;
 
     // bound the player for collision check
-    protected Rectangle hitBox;
+    protected Rectangle2D.Float hitBox;
 
     public Entity(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        initHitBox();
     }
 
-    private void initHitBox() {
-        hitBox = new Rectangle((int) x, (int) y, width, height);
+    protected void initHitBox(float x, float y, float width, float height) {
+        hitBox = new Rectangle2D.Float(x, y, width, height);
     }
 
     // for checking the hitbox
     protected void drawHitBox(Graphics g) {
         g.setColor(Color.RED);
-        g.drawRect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
+        g.drawRect((int)hitBox.x, (int)hitBox.y, (int)hitBox.width, (int)hitBox.height);
     }
 
-    protected void updateHitBox() {
-        hitBox.x = (int) x;
-        hitBox.y = (int) y;
-    }
+    // protected void updateHitBox() {
+    //     hitBox.x = (int) x;
+    //     hitBox.y = (int) y;
+    // }
 
-    public Rectangle getHitBox() {
+    public Rectangle2D.Float getHitBox() {
         return hitBox;
     }
 }

@@ -3,6 +3,7 @@ package Entities;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import NewGame.Game;
 import Utils.Constants;
 import Utils.HelpMethods;
 import Utils.LoadSave;
@@ -22,14 +23,18 @@ public class Player extends Entity {
 
     private int[][] levelData;
 
+    private float xDrawOffset = 21 * Game.SCALE;
+    private float yDrawOffset =  4 * Game.SCALE;
+
+
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
+        initHitBox(x, y, 20 * Game.SCALE, 28 * Game.SCALE);
     }
 
     public void update() {
         updatePos();
-        updateHitBox();
         setAnimation();
         updateAnimation();
     }
@@ -40,7 +45,7 @@ public class Player extends Entity {
 
     // render the player
     public void render(Graphics g) {
-        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 64 * 2, 40 * 2, null);
+        g.drawImage(animations[playerAction][aniIndex], (int)(hitBox.x - xDrawOffset), (int)(hitBox.y - yDrawOffset), width, height, null);
         drawHitBox(g);
     }
 
@@ -102,9 +107,15 @@ public class Player extends Entity {
             ySpeed = playerSpeed;
         }
 
-        if (HelpMethods.canMove(x + xSpeed, y + ySpeed, width, height, levelData)) {
-            this.x += xSpeed;
-            this.y += ySpeed;
+        // if (HelpMethods.canMove(x + xSpeed, y + ySpeed, width, height, levelData)) {
+        //     this.x += xSpeed;
+        //     this.y += ySpeed;
+        //     moving = true;
+        // }
+
+        if (HelpMethods.canMove(hitBox.x + xSpeed, hitBox.y + ySpeed, hitBox.width, hitBox.height, levelData)) {
+            hitBox.x += xSpeed;
+            hitBox.y += ySpeed;
             moving = true;
         }
     }
