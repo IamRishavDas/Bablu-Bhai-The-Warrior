@@ -21,6 +21,11 @@ public class Game implements Runnable {
 
     private LevelManager levelManager;
 
+    // intitial player position
+    private final int initialPlayerPosX = 200;
+    private final int initialPlayerPosY = 200;
+    
+
 
     // FPS settter
     private Thread gameThread;
@@ -42,7 +47,7 @@ public class Game implements Runnable {
 
     public void initClasses(){
         levelManager = new LevelManager(this);
-        player = new Player(200, 200, (int)(64 * SCALE), (int)(40 * SCALE));
+        player = new Player(initialPlayerPosX, initialPlayerPosY, (int)(64 * SCALE), (int)(40 * SCALE));
         player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
     }
 
