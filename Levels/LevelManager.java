@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import NewGame.Game;
 import Utils.LoadSave;
 
+@SuppressWarnings("unused")
 public class LevelManager {
 
     private Game game;
