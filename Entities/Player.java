@@ -14,7 +14,7 @@ public class Player extends Entity {
     private int aniTick, aniSpeed = 15, aniIndex; // the lower aniSpeed leads to increase the animation speed
     private int playerAction = Constants.PlayerConstants.IDLE;
 
-    private boolean left, right, up, down;
+    private boolean left, right, up, down, jump;
 
     private boolean moving = false;
     private boolean attacking = false;
@@ -25,6 +25,13 @@ public class Player extends Entity {
 
     private float xDrawOffset = 21 * Game.SCALE;
     private float yDrawOffset =  4 * Game.SCALE;
+
+    // jumping speed / gravity
+    private float airSpeed = 0.0f;
+    private final float gravity = 0.05f * Game.SCALE;
+    private float jumpSpeed = -2.25f * Game.SCALE;
+    private float fallSpeedAfterCollision = 0.05f * Game.SCALE;
+    private boolean inAir = false;
 
 
     public Player(float x, float y, int width, int height) {
@@ -90,33 +97,36 @@ public class Player extends Entity {
         moving = false; // default
 
         // if anything is not placed
-        if (!left && !right && !up && !down)
+        if (!left && !right && !inAir)
             return;
 
-        float xSpeed = 0, ySpeed = 0;
+        float xSpeed = 0;
 
-        if (left && !right) { // left
-            xSpeed = -playerSpeed;
-        } else if (!left && right) { // right
-            xSpeed = playerSpeed;
+        if (left) { // left
+            xSpeed -= playerSpeed;
+        }
+        if (right) { // right
+            xSpeed += playerSpeed;
         }
 
-        if (up && !down) { // up
-            ySpeed = -playerSpeed;
-        } else if (!up && down) { // down
-            ySpeed = playerSpeed;
+        if(inAir){
+
+        } else {
+            updateXpos(xSpeed);
         }
 
-        // if (HelpMethods.canMove(x + xSpeed, y + ySpeed, width, height, levelData)) {
-        //     this.x += xSpeed;
-        //     this.y += ySpeed;
+        // if (HelpMethods.canMove(hitBox.x + xSpeed, hitBox.y + ySpeed, hitBox.width, hitBox.height, levelData)) {
+        //     hitBox.x += xSpeed;
+        //     hitBox.y += ySpeed;
         //     moving = true;
         // }
+    }
 
-        if (HelpMethods.canMove(hitBox.x + xSpeed, hitBox.y + ySpeed, hitBox.width, hitBox.height, levelData)) {
+    private void updateXpos(float xSpeed){
+        if (HelpMethods.canMove(hitBox.x + xSpeed, hitBox.y, hitBox.width, hitBox.height, levelData)) {
             hitBox.x += xSpeed;
-            hitBox.y += ySpeed;
-            moving = true;
+        } else {
+            hitBox.x = HelpMethods.GetEntityPosNextToWall(hitBox, xSpeed);
         }
     }
 
