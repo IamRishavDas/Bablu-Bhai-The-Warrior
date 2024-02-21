@@ -47,6 +47,9 @@ public class Player extends Entity {
 
     public void loadLevelData(int[][] levelData) {
         this.levelData = levelData;
+        if(!HelpMethods.IsEntityOnFloor(hitBox, levelData)){
+            inAir = true;
+        }
     }
 
     // render the player
@@ -77,6 +80,14 @@ public class Player extends Entity {
             playerAction = Constants.PlayerConstants.RUNNING;
         } else {
             playerAction = Constants.PlayerConstants.IDLE;
+        }
+
+        if(inAir) {
+            if(airSpeed < 0) { // going up
+                playerAction = Constants.PlayerConstants.JUMPING;
+            } else { // going down
+                playerAction = Constants.PlayerConstants.FALLING;
+            }
         }
 
         if (attacking) {
