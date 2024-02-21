@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Utils.Constants;
+import Utils.HelpMethods;
 import Utils.LoadSave;
 
 public class Player extends Entity {
@@ -19,6 +20,8 @@ public class Player extends Entity {
 
     private final int playerSpeed = 1;
 
+    private int[][] levelData;
+
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
@@ -29,6 +32,10 @@ public class Player extends Entity {
         updateHitBox();
         setAnimation();
         updateAnimation();
+    }
+
+    public void loadLevelData(int[][] levelData) {
+        this.levelData = levelData;
     }
 
     // render the player
@@ -77,19 +84,27 @@ public class Player extends Entity {
 
         moving = false; // default
 
+        // if anything is not placed
+        if (!left && !right && !up && !down)
+            return;
+
+        float xSpeed = 0, ySpeed = 0;
+
         if (left && !right) { // left
-            x -= playerSpeed;
-            moving = true;
+            xSpeed = -playerSpeed;
         } else if (!left && right) { // right
-            x += playerSpeed;
-            moving = true;
+            xSpeed = playerSpeed;
         }
 
         if (up && !down) { // up
-            y -= playerSpeed;
-            moving = true;
+            ySpeed = -playerSpeed;
         } else if (!up && down) { // down
-            y += playerSpeed;
+            ySpeed = playerSpeed;
+        }
+
+        if (HelpMethods.canMove(x + xSpeed, y + ySpeed, width, height, levelData)) {
+            this.x += xSpeed;
+            this.y += ySpeed;
             moving = true;
         }
     }
