@@ -10,7 +10,7 @@ public class GameFrame extends JFrame {
     public GameFrame(GamePanel gamePanel) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-        setTitle("GameFrame");
+        setTitle("Bablu Bhai The Warrior");
         add(gamePanel);
         pack(); // adjust the frame size according to the panel dim
         setLocationRelativeTo(null);
