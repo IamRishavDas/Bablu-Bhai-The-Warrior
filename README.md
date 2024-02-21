@@ -1,5 +1,4 @@
 
-https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/c267a500-b548-4f9a-abfd-5a3d2c6be6f9
 # ActionGame
 A simple Pin Ball game using java
 
@@ -20,11 +19,13 @@ Also, update the paintComponet() using the repaint() method.
 Now the sepearte game loop with different thread.
 
 
-
+# HitBox Added
 https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/b9071f6e-c328-4188-be82-2efaf7708a8d
 
+# Collision Detection
 https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/c55ca63b-b0cd-4639-8f5b-9b2241a6868c
 
+# Optimzed Collision Detection
 https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/bc99373d-7128-4ada-967b-810b23c00d23
 
 # Gravity and Jump Animation Added
