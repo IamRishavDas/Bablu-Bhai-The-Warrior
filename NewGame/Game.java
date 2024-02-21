@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import Entities.Player;
 import Levels.LevelManager;
 
+import javax.swing.Timer;
+
 @SuppressWarnings("unused")
 public class Game implements Runnable {
     private GameFrame gameFrame;
@@ -110,6 +112,54 @@ public class Game implements Runnable {
             }
         }
     }
+
+    // enhance frame updates and update per second
+    private final int DELAY = 1000;
+
+    ActionListener taskPerformer = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+            double timePerFrame = 1e9 / FPS;
+            double timePerUpddate = 1e9 / UPS;
+
+            long prevTime = System.nanoTime();
+            int updates = 0;
+
+            double deltaU = 0;
+            double deltaF = 0;
+
+            int frames = 0;
+            long lastCheck = System.currentTimeMillis();
+
+            long currTime = System.nanoTime();
+
+            deltaU += (currTime - prevTime)/timePerUpddate;
+            deltaF += (currTime - prevTime)/timePerFrame;
+
+            prevTime = currTime;
+            if(deltaU >= 1){
+                update();
+                updates++;
+                deltaU--;
+            }
+            
+            if(deltaF >= 1){
+                gamePanel.repaint();
+
+                frames++;
+                deltaF--;
+             }
+
+            if ((System.currentTimeMillis() - lastCheck) >= 1000) {
+                lastCheck = System.currentTimeMillis();
+                System.out.println("FPS: " + frames + "| UPS: " + updates);
+                frames = 0;
+                updates = 0;
+            }
+        }
+    };
+
+    Timer timer = new Timer(DELAY, taskPerformer);
+    //timer.start();
 
     public Player getPlayer(){
         return this.player;
