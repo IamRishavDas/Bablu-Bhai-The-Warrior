@@ -22,7 +22,7 @@ public class Game implements Runnable {
     private LevelManager levelManager;
 
     // intitial player position
-    private final int initialPlayerPosX = 200;
+    private final int initialPlayerPosX = 100;
     private final int initialPlayerPosY = 200;
     
 
