@@ -16,3 +16,9 @@ Also, update the paintComponet() using the repaint() method.
     2. make a fps counter
     3. visuals
 Now the sepearte game loop with different thread.
+
+
+
+https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/b9071f6e-c328-4188-be82-2efaf7708a8d
+
+
