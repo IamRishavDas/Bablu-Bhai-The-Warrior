@@ -12,7 +12,6 @@ public void paintCompoent(Graphics g){
 
 Also, update the paintComponet() using the repaint() method.
 4. Game Loop --->
-    Every Game must contain a game Loop 
     1. repaint() game loop
     2. make a fps counter
     3. visuals
