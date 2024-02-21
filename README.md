@@ -1,6 +1,6 @@
 
 # ActionGame
-A simple Pin Ball game using java
+A simple Action game using java
 
 1. First Simple JFrame And JPanel for the game
 2. Draw basic components using the paintComponent defined in JPanel
