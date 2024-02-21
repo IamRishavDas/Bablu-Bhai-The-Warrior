@@ -22,3 +22,7 @@ Now the sepearte game loop with different thread.
 https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/b9071f6e-c328-4188-be82-2efaf7708a8d
 
 
+
+
+https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/c55ca63b-b0cd-4639-8f5b-9b2241a6868c
+
