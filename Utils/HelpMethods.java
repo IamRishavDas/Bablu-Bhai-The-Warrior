@@ -6,10 +6,10 @@ import NewGame.Game;
 
 public class HelpMethods {
     public static boolean canMove(float x, float y, float width, float height, int[][] levelData) {
-        if (!isSollid(x, y, levelData)) {
-            if (!isSollid(x + width, y + height, levelData)) {
-                if (!isSollid(x + width, y, levelData)) {
-                    if (!isSollid(x, y + height, levelData)) {
+        if (!isSolid(x, y, levelData)) {
+            if (!isSolid(x + width, y + height, levelData)) {
+                if (!isSolid(x + width, y, levelData)) {
+                    if (!isSolid(x, y + height, levelData)) {
                         return true;
                     } else
                         return false;
@@ -21,7 +21,7 @@ public class HelpMethods {
             return false;
     }
 
-    public static boolean isSollid(float x, float y, int[][] levelData) {
+    public static boolean isSolid(float x, float y, int[][] levelData) {
         if (x < 0 || x >= Game.GAME_WIDTH) {
             return true;
         }
@@ -41,15 +41,37 @@ public class HelpMethods {
         }
     }
 
-    public static float GetEntityPosNextToWall(Rectangle2D.Float hitBox, float xSpeed){
-        int currentTile =(int)(hitBox.x / Game.TILES_SIZE);
-        if(xSpeed > 0){ // right
+    public static float GetEntityPosNextToWall(Rectangle2D.Float hitBox, float xSpeed) {
+        int currentTile = (int) (hitBox.x / Game.TILES_SIZE);
+        if (xSpeed > 0) { // right
             int tileXPos = currentTile * Game.TILES_SIZE;
-            int xOffset = (int)(Game.TILES_SIZE - hitBox.width);
+            int xOffset = (int) (Game.TILES_SIZE - hitBox.width);
             return tileXPos + xOffset - 1;
         } else { // left
             return currentTile * Game.TILES_SIZE;
         }
+    }
+
+    public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float hitBox, float airSpeed) {
+        int currentTile = (int) (hitBox.y / Game.TILES_SIZE);
+        if (airSpeed > 0) { // falling
+            int tileYPos = currentTile * Game.TILES_SIZE;
+            int yOffset = (int) (Game.TILES_SIZE - hitBox.height);
+            return tileYPos + yOffset - 1; // avoid overlapping
+        } else { // jumping
+            return currentTile * Game.TILES_SIZE;
+        }
+    }
+
+    // check the pixel below bottom right and bottom left
+    public static boolean IsEntityOnFloor(Rectangle2D.Float hitBox, int[][] levelData) {
+        if (!isSolid(hitBox.x, hitBox.y + hitBox.height + 1, levelData)) {
+            if (!isSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, levelData)) {
+                return false;
+            } else
+                return true;
+        } else
+            return true;
     }
 
 }
