@@ -2,7 +2,6 @@ package GameStates;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 
 import NewGame.Game;
