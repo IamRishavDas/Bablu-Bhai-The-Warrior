@@ -51,10 +51,11 @@ public class Playing extends State implements StateMethods{
     public void keyPressed(KeyEvent e) {
         int keyEvent = e.getKeyCode();
         switch(keyEvent){
-            case KeyEvent.VK_RIGHT -> player.setRight(true); 
-            case KeyEvent.VK_LEFT  -> player.setLeft(true);
-            case KeyEvent.VK_A     -> player.setAttacking(true);
-            case KeyEvent.VK_SPACE -> player.setJump(true);
+            case KeyEvent.VK_RIGHT  -> player.setRight(true); 
+            case KeyEvent.VK_LEFT   -> player.setLeft(true);
+            case KeyEvent.VK_A      -> player.setAttacking(true);
+            case KeyEvent.VK_SPACE  -> player.setJump(true);
+            case KeyEvent.VK_ESCAPE -> GameState.STATE = GameState.MENU;
         }
     }
 
