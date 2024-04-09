@@ -2,6 +2,7 @@ package GameStates;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import Entities.Player;
 import Levels.LevelManager;
@@ -70,10 +71,26 @@ public class Playing extends State implements StateMethods{
         }
     }
 
+    @Override
+    public void mouseMoved(MouseEvent e){
+        
+    }
+
 
     @Override
-    public void test() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'test'");
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+    }
+
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
     }
 }

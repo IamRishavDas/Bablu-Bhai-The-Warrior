@@ -59,6 +59,9 @@ public class Game implements Runnable {
         switch(GameStates.GameState.STATE){
             case MENU    -> menu.update();
             case PLAYING -> playing.update();
+            case OPTIONS -> System.exit(0);
+            case QUIT    -> System.exit(0);
+            default -> throw new IllegalArgumentException("Unexpected value: " + GameStates.GameState.STATE);
         }
     }
 
@@ -67,6 +70,7 @@ public class Game implements Runnable {
         switch(GameStates.GameState.STATE){
             case MENU    -> menu.render(g);
             case PLAYING -> playing.render(g);
+            default -> throw new IllegalArgumentException("Unexpected value: " + GameStates.GameState.STATE);
                 
         }
     }

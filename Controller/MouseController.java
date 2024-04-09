@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import GameStates.GameState;
 import NewGame.GamePanel;
 
 public class MouseController implements MouseListener, MouseMotionListener{
@@ -21,12 +22,20 @@ public class MouseController implements MouseListener, MouseMotionListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-       
+       switch (GameState.STATE) {
+        case MENU -> gamePanel.getGame().getMenu().mousePressed(e);
+        case PLAYING -> gamePanel.getGame().getMenu().mousePressed(e);
+        default -> throw new IllegalArgumentException("Unexpected value: " + GameState.STATE);
+       }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-       
+        switch (GameState.STATE) {
+            case MENU -> gamePanel.getGame().getMenu().mouseReleased(e);
+            case PLAYING -> gamePanel.getGame().getMenu().mouseReleased(e);
+            default -> throw new IllegalArgumentException("Unexpected value: " + GameState.STATE);
+           }
     }
 
     @Override
@@ -41,11 +50,15 @@ public class MouseController implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // gamePanel.setPos(e.getX(), e.getY());
+        
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // gamePanel.setPos(e.getX(), e.getY());
+        switch (GameState.STATE) {
+            case MENU -> gamePanel.getGame().getMenu().mouseMoved(e);
+            case PLAYING -> gamePanel.getGame().getMenu().mouseMoved(e);
+            default -> throw new IllegalArgumentException("Unexpected value: " + GameState.STATE);
+           }
     }
 }

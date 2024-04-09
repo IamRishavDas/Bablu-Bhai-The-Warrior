@@ -10,9 +10,11 @@ import NewGame.Game;
 
 public class LoadSave {
 
-    public static final String PLAYER = "player_sprites.png";
-    public static final String LEVEL_1 = "outside_sprites.png";
-    public static final String LEVEL_ONE_DATA = "level_one_data.png";
+    public static final String PLAYER           = "player_sprites.png";
+    public static final String LEVEL_1          = "outside_sprites.png";
+    public static final String LEVEL_ONE_DATA   = "level_one_data.png";
+    public static final String MENU_BUTTONS     = "menu_buttons.png";
+    public static final String MENU_BACKGROUND  = "menu_background.png";
 
     public static BufferedImage getImage(String filename) {
         BufferedImage image = null;
