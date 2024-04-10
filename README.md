@@ -1,21 +1,7 @@
 
-# ActionGame
-A simple Action game using java
+# Bablu Bhai The Warrier
+A simple Action game using java Java Swing and java AWT
 
-1. First Simple JFrame And JPanel for the game
-2. Draw basic components using the paintComponent defined in JPanel
-
-public void paintCompoent(Graphics g){
-    super.paintComponent(g);
-    ...// drawing methods ...
-}
-
-Also, update the paintComponet() using the repaint() method.
-4. Game Loop --->
-    1. repaint() game loop
-    2. make a fps counter
-    3. visuals
-Now the sepearte game loop with different thread.
 
 
 # HitBox Added
