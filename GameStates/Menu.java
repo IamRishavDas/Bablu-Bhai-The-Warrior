@@ -9,10 +9,11 @@ import NewGame.Game;
 import UI.MenuButton;
 import Utils.LoadSave;
 
+@SuppressWarnings("unused")
 public class Menu extends State implements StateMethods {
 
     private MenuButton[] buttons = new MenuButton[3];
-    private BufferedImage bachgroundImage;
+    private BufferedImage backgroundImage;
     private int menuX, menuY, menuWidth, menuHeight;
 
     public Menu(Game game) {
@@ -22,10 +23,10 @@ public class Menu extends State implements StateMethods {
     }
 
     private void loadBackground() {
-        bachgroundImage = LoadSave.getImage(LoadSave.MENU_BACKGROUND);
-        menuWidth  = (int)(bachgroundImage.getWidth() * Game.SCALE);
-        menuHeight = (int)(bachgroundImage.getHeight() * Game.SCALE);
-        menuX = Game.GAME_WIDTH / 2 - menuWidth / 2;
+        backgroundImage = LoadSave.getImage(LoadSave.MENU_BACKGROUND);
+        menuWidth  = (int)(backgroundImage.getWidth() * Game.SCALE);
+        menuHeight = (int)(backgroundImage.getHeight() * Game.SCALE);
+        menuX = (Game.GAME_WIDTH / 2) - (menuWidth / 2);
         menuY = (int)(45 * Game.SCALE);
     }
 
@@ -43,7 +44,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(bachgroundImage, menuX, menuY, null);
+        g.drawImage(backgroundImage, menuX, menuY, null);
         for (MenuButton mb : buttons)
             mb.render(g);
     }

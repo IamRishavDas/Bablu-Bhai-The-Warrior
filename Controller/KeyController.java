@@ -21,7 +21,8 @@ public class KeyController implements KeyListener{
     public void keyPressed(KeyEvent e) {
         switch (GameState.STATE) {
             case MENU    -> gamePanel.getGame().getMenu().keyPressed(e);
-            case PLAYING -> gamePanel.getGame().getPlaying().keyPressed(e);            
+            case PLAYING -> gamePanel.getGame().getPlaying().keyPressed(e);
+            default -> throw new IllegalArgumentException("Unexpected value: " + GameState.STATE);            
         }
     }
 
@@ -29,7 +30,8 @@ public class KeyController implements KeyListener{
     public void keyReleased(KeyEvent e) {
         switch (GameState.STATE) {
             case MENU    -> gamePanel.getGame().getMenu().keyReleased(e);
-            case PLAYING -> gamePanel.getGame().getPlaying().keyReleased(e);            
+            case PLAYING -> gamePanel.getGame().getPlaying().keyReleased(e);
+            default -> throw new IllegalArgumentException("Unexpected value: " + GameState.STATE);            
         }
     }
 }
