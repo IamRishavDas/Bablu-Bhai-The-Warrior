@@ -30,6 +30,11 @@ https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/bc99373d
 # Gravity and Jump Animation Added
 https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/e68efcee-0f8e-47bb-95a4-58be700740fa
 
+# Added the Menu
+https://github.com/IamRishavDas/Bablu-Bhai-The-Warrior/assets/140265067/45be5c36-fb2f-4507-b3a1-19e0a6d380d5
+
+
+
 
 
 
