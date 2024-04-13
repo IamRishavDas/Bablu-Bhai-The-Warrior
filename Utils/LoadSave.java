@@ -18,6 +18,7 @@ public class LoadSave {
     public static final String MENU_BUTTONS      = "menu_buttons.png";
     public static final String MENU_BACKGROUND   = "menu_background.png";
     public static final String PAUSE_BACKGROUND  = "pause_menu.png";
+    public static final String SOUND_BUTTONS     = "sound_button.png";
 
     public static BufferedImage getImage(String filename) {
         BufferedImage image = null;
